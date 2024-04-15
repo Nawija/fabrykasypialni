@@ -13,9 +13,10 @@ const Carousel = () => {
   const settings = {
     dots: true,
     fade: true,
+    dotsClass: "slick-dots slick-thumb",
     arrows: false,
     autoplay: true,
-    speed: 500,
+    speed: 400,
     autoplaySpeed: 3600,
     infinite: true,
     slidesToShow: 1,
@@ -23,7 +24,7 @@ const Carousel = () => {
     customPaging: function () {
       return (
         <div
-          className={`z-10 flex h-3 w-3 cursor-pointer items-center justify-center rounded-full bg-color/30 transition-colors hover:bg-color/60`}
+          className={`z-10 h-3 w-3 cursor-pointer rounded-full bg-color/30 transition-colors hover:bg-color/60`}
         ></div>
       );
     },
@@ -32,19 +33,19 @@ const Carousel = () => {
   return (
     <div className="text-center">
       <Slider {...settings}>
-        <div className="w-full max-w-screen-2xl">
+        <div className="w-full max-w-screen-2xl outline-0">
           <Image src={h1} alt="..." className="object-cover object-center" />
         </div>
 
-        <div className="w-full max-w-screen-2xl">
+        <div className="w-full max-w-screen-2xl outline-0">
           <Image src={h2} alt="..." className="object-cover object-center" />
         </div>
 
-        <div className="w-full max-w-screen-2xl">
+        <div className="w-full max-w-screen-2xl outline-0">
           <Image src={h3} alt="..." className="object-cover object-center" />
         </div>
 
-        <div className="w-full max-w-screen-2xl">
+        <div className="w-full max-w-screen-2xl outline-0">
           <Image src={h4} alt="..." className="object-cover object-center" />
         </div>
       </Slider>

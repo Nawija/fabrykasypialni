@@ -6,7 +6,13 @@ html {
   scroll-behavior: smooth;
 }
 .slick-dots .slick-active div {
-  background-color: white;
+  background-color: #53236e;
+}
+.slick-dots {
+  display: flex;
+}
+.slick-thumb {
+  display: flex;
 }
 
 /* :root {
