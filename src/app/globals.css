@@ -5,10 +5,20 @@
 html {
   scroll-behavior: smooth;
 }
+
+.slick-thumb {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  display: flex !important;
+}
+.slick-dots li {
+  margin: 0 2px;
+}
 .slick-dots .slick-active div {
   background-color: #53236e;
 }
-
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

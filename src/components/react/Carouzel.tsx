@@ -31,7 +31,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center py-8">
       <Slider {...settings}>
         <div className="w-full max-w-screen-2xl outline-0">
           <Image src={h1} alt="..." className="object-cover object-center" />
