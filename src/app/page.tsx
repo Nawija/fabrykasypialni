@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <>
       <Carousel />
-      <section className="bg-white py-24">
+      <section className="bg-white py-24 px-3">
         <div className="mx-auto max-w-screen-2xl">
           <h2 className="pb-12 text-3xl font-bold">Producenci</h2>
 
@@ -49,7 +49,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-color/10 py-24">
+      <section className="bg-color/10 py-24 px-3">
         <div className="mx-auto max-w-screen-2xl">
           <h2 className="pb-12 text-3xl font-bold">Polecane produkty</h2>
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
@@ -57,7 +57,7 @@ export default function Home() {
               <div className="flex flex-col items-start justify-start transition-all space-y-3 rounded-sm bg-white p-1 overflow-hidden border-2 border-transparent hover:scale-105 duration-300 hover:border-color/50 ">
                 <img className="w-auto sm:h-40 mx-auto object-cover" src={product.img} />
                 <div className="flex flex-col p-4">
-                  <h3 className="text-lg font-bold w-full h-12">{product.title.slice(0,50)}</h3>
+                  <h3 className="md:text-lg text-base font-bold w-full sm:h-12">{product.title.slice(0,50)}</h3>
                   <div className="flex items-center justify-end text-2xl text-red-600">
                     <p>{product.price}</p>
                     <p>zł</p>

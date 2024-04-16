@@ -65,28 +65,28 @@ export default function Header() {
             <FaSearch className="absolute right-2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-color" />
           </div>
 
-          <div className="hidden space-x-4 lg:flex">
+          <div className="space-x-4 flex">
             <Link
               href="/"
               className="flex items-center justify-center text-color transition-colors hover:text-stone-400"
             >
               <RiLockPasswordLine className="text-xl" />{" "}
-              <p className="pl-2">Zaloguj się</p>
+              <p className="pl-2 hidden lg:block">Zaloguj się</p>
             </Link>
             <Link
               href="/"
               className="flex items-center justify-center text-color transition-colors hover:text-stone-400"
             >
-              <FiHeart className="text-xl" /> <p className="pl-2">Ulubione</p>
+              <FiHeart className="text-xl" /> <p className="pl-2 hidden lg:block">Ulubione</p>
             </Link>
             <Link
               href="/"
               className="flex items-center justify-center text-color transition-colors hover:text-stone-400"
             >
-              <SlBasket className="text-xl" /> <p className="pl-2">Koszyk</p>
+              <SlBasket className="text-xl" /> <p className="pl-2 hidden lg:block">Koszyk</p>
             </Link>
-          </div>
           <MenuBurger handleShowMenu={handleShowMenu} showMenu={showMenu} />
+          </div>
         </div>
       </header>
       <nav
