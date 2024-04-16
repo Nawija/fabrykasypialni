@@ -54,8 +54,8 @@ export default function Home() {
           <h2 className="pb-12 text-3xl font-bold">Polecane produkty</h2>
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
             {POLECANE_PRODUKTY.slice(0, 10).map((product) => (
-              <div className="flex flex-col items-start justify-start space-y-3 rounded-sm bg-white p-1">
-                <img src={product.img} />
+              <div className="flex flex-col items-start justify-start transition-all space-y-3 rounded-sm bg-white p-1 overflow-hidden border-2 border-transparent hover:scale-105 duration-300 hover:border-color/50 ">
+                <img className="w-auto sm:h-40 mx-auto object-cover" src={product.img} />
                 <div className="flex flex-col p-4">
                   <h3 className="text-lg font-bold w-full h-12">{product.title.slice(0,50)}</h3>
                   <div className="flex items-center justify-end text-2xl text-red-600">
