@@ -8,12 +8,7 @@ html {
 .slick-dots .slick-active div {
   background-color: #53236e;
 }
-.slick-dots {
-  display: flex;
-}
-.slick-thumb {
-  display: flex;
-}
+
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
