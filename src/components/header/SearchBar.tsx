@@ -9,7 +9,6 @@ type Props = {
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { IoIosCloseCircle } from "react-icons/io";
 
 import { FaSearch } from "react-icons/fa";
 import { POLECANE_PRODUKTY } from "../../constants/Links";
@@ -80,7 +79,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="relative flex-1 mx-12" ref={inputRef}>
+    <div className="relative z-50 mx-12 flex-1" ref={inputRef}>
       <form className="relative w-full">
         <input
           type="text"
@@ -97,28 +96,17 @@ export default function SearchBar() {
           />
         </button>
       </form>
-      {isModalOpen && (
-        <div className="fixed left-0 top-20 z-50 max-h-80 overflow-y-scroll rounded-lg lg:left-1/2 lg:h-full lg:max-h-full lg:w-1/3 lg:-translate-x-1/2 lg:overflow-auto">
-          <div className="anim-opacity w-full transform space-y-3 rounded-lg border bg-white p-3 sm:w-1/2 lg:w-full lg:p-6">
-            <button
-              className="absolute right-2 top-2 text-second"
-              onClick={closeModal}
-            >
-              <IoIosCloseCircle className="text-2xl" />
-            </button>
-            <ul className="flex flex-col items-center justify-center space-y-2">
-              {filteredProducts.slice(0, 4).map((item, index) => (
-                <SearchParams
-                  item={item}
-                  key={index}
-                  closeModal={closeModal}
-                  clearFilterProducts={clearFilterProducts}
-                />
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+
+      <ul className="fixed z-50 flex w-full flex-col items-center justify-center space-y-2 bg-white p-4">
+        {filteredProducts.slice(0, 4).map((item, index) => (
+          <SearchParams
+            item={item}
+            key={index}
+            closeModal={closeModal}
+            clearFilterProducts={clearFilterProducts}
+          />
+        ))}
+      </ul>
     </div>
   );
 }
