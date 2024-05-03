@@ -97,7 +97,7 @@ export default function SearchBar() {
         </button>
       </form>
 
-      <ul className="fixed z-50 flex w-full flex-col items-center justify-center space-y-2 bg-white p-4">
+      <ul className="fixed z-50 flex flex-col items-center justify-center space-y-2 bg-white">
         {filteredProducts.slice(0, 4).map((item, index) => (
           <SearchParams
             item={item}

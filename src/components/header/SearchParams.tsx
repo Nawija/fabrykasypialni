@@ -15,13 +15,13 @@ export default function SearchParams({
 }) {
   const { id, img, title, price, prevPrice } = item;
   return (
-    <li className="bg-body border-main w-full rounded-lg border p-2 transition-colors duration-300 hover:border-zinc-300">
+    <li className="p-4 border-main w-full rounded-lg border transition-colors duration-300 hover:border-zinc-300">
       <Link
         onClick={() => {
           clearFilterProducts();
           closeModal();
         }}
-        href={`/szablony/${id}`}
+        href={`/${id}`}
         className="bg-body flex items-start justify-between space-x-2 p-2"
       >
         <img
