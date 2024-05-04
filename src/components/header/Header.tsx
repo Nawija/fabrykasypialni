@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`z-[999] w-full overflow-x-hidden bg-white text-black transition-colors duration-300`}
+        className={` z-[999] w-full bg-white text-black transition-colors duration-300`}
       >
         <div className="z-50 mx-auto flex w-full max-w-[1600px] flex-col items-center justify-between px-7 py-3 lg:flex-row">
           <div className="z-50 flex items-center justify-center space-x-4">

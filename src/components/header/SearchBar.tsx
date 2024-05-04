@@ -54,7 +54,10 @@ export default function SearchBar() {
   }, [search]);
 
   const modelOp = (isFocus: boolean) => {
-    setIsModalOpen(true);
+    setIsModalOpen(isFocus);
+  };
+  const modelClose = () => {
+    setIsModalOpen(false);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +120,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className={`z-50 mx-12 flex-1`} ref={inputRef}>
+    <div className={`relative z-50 mx-12 flex-1`} ref={inputRef}>
       <form className="relative w-full" onSubmit={handleSearchSubmit}>
         <input
           type="text"
@@ -137,7 +140,7 @@ export default function SearchBar() {
       </form>
 
       <div
-        className={`${recentSearches.length > 0 || filteredProducts.length > 0 ? "absolute" : "hidden"}  left-1/2 top-20 w-1/3 -translate-x-1/2 space-y-10 bg-white px-10 py-6`}
+        className={`${isModalOpen === true ? "absolute" : "hidden"}  left-1/2 top-20 w-full -translate-x-1/2 space-y-10 bg-white px-10 py-6`}
       >
         {recentSearches.length > 0 && (
           <div className="mt-4">
@@ -176,9 +179,9 @@ export default function SearchBar() {
             ))}
           </ul>
         )}
-        {filteredProducts.length < 1 && search.length > 2 && (
-          <p className="text-red-500">Nie znaleziono</p>
-        )}
+        {isModalOpen === true &&
+          filteredProducts.length < 1 &&
+          search.length > 2 && <p className="text-red-500">Nie znaleziono</p>}
       </div>
     </div>
   );
