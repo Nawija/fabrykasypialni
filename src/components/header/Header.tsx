@@ -85,7 +85,7 @@ export default function Header() {
         </div>
       </header>
       <nav
-        className={`fixed left-0 top-0 z-40 h-screen w-full bg-[#53236E] text-white transition-transform lg:sticky lg:top-0 lg:h-auto lg:w-auto lg:translate-x-0 ${showMenu ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed left-0 top-0 z-10 h-screen w-full bg-[#53236E] text-white transition-transform lg:sticky lg:top-0 lg:h-auto lg:w-auto lg:translate-x-0 ${showMenu ? "translate-x-0" : "-translate-x-full"}`}
       >
         <ul className="mx-auto flex h-full w-1/2 max-w-screen-2xl flex-col items-start justify-center space-y-4 px-2 py-4 text-lg font-semibold lg:w-auto lg:flex-none lg:flex-row lg:justify-start lg:space-x-6 lg:space-y-0 lg:text-base lg:font-medium">
           {NAVLINKS.map((link) => (

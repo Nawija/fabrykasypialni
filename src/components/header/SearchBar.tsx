@@ -20,7 +20,15 @@ export default function SearchBar() {
   const [search, setSearch] = useState(searchParams.get("szukaj") || "");
   const [filteredProducts, setFilteredProducts] = useState<Props[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const inputRef = useRef<HTMLDivElement>(null);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const storedSearches = localStorage.getItem("recentSearches");
+    if (storedSearches) {
+      setRecentSearches(JSON.parse(storedSearches));
+    }
+  }, []);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -45,12 +53,15 @@ export default function SearchBar() {
     return () => clearTimeout(timer);
   }, [search]);
 
-  function modelOp() {
+  const modelOp = (isFocus: boolean) => {
     setIsModalOpen(true);
-  }
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
+  };
+  const xxx = (recentSearch: string) => {
+    setSearch(recentSearch);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -78,14 +89,42 @@ export default function SearchBar() {
     setIsModalOpen(false);
   };
 
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (search.trim() !== "") {
+      const updatedRecentSearches = [...recentSearches];
+      if (!recentSearches.includes(search)) {
+        updatedRecentSearches.unshift(search);
+        if (updatedRecentSearches.length > 5) {
+          updatedRecentSearches.pop();
+        }
+        setRecentSearches(updatedRecentSearches);
+        localStorage.setItem(
+          "recentSearches",
+          JSON.stringify(updatedRecentSearches),
+        );
+      }
+    }
+  };
+  const removeRecentSearch = (index: number) => {
+    const updatedRecentSearches = [...recentSearches];
+    updatedRecentSearches.splice(index, 1);
+    setRecentSearches(updatedRecentSearches);
+    localStorage.setItem(
+      "recentSearches",
+      JSON.stringify(updatedRecentSearches),
+    );
+  };
+
   return (
     <div className={`z-50 mx-12 flex-1`} ref={inputRef}>
-      <form className="relative w-full">
+      <form className="relative w-full" onSubmit={handleSearchSubmit}>
         <input
           type="text"
           value={search}
           onChange={handleSearchChange}
-          onFocus={modelOp}
+          onFocus={() => modelOp(true)}
+          onBlur={() => modelOp(false)}
           placeholder="Szukaj produktu ..."
           className="w-full rounded-md border border-color/20 p-3 text-sm outline-none"
         />
@@ -98,22 +137,48 @@ export default function SearchBar() {
       </form>
 
       <div
-        className={`absolute top-20 bg-white  ${search.length >= 2 ? "p-10" : ""}`}
+        className={`${recentSearches.length > 0 || filteredProducts.length > 0 ? "absolute" : "hidden"}  left-1/2 top-20 w-1/3 -translate-x-1/2 space-y-10 bg-white px-10 py-6`}
       >
-        <ul className="z-50 flex flex-col items-center justify-center space-y-2 bg-white">
-          {filteredProducts.slice(0, 4).map((item, index) => (
-            <SearchParams
-              item={item}
-              key={index}
-              closeModal={closeModal}
-              clearFilterProducts={clearFilterProducts}
-            />
-          ))}
-        </ul>
-        <div
-          onClick={closeModal}
-          className={`fixed left-0 top-0 -z-20 h-full w-full transition-colors  ${isModalOpen ? "bg-black/30 backdrop-blur-sm" : "scale-0 bg-none"}`}
-        />
+        {recentSearches.length > 0 && (
+          <div className="mt-4">
+            <h3 className="text-sm font-semibold text-gray-600">
+              Ostatnie wyszukiwania:
+            </h3>
+            <ul className="mt-2">
+              {recentSearches.map((recentSearch, index) => (
+                <li key={index} className="flex items-center justify-between">
+                  <span
+                    onClick={() => setSearch(recentSearch)}
+                    className="cursor-pointer text-gray-800"
+                  >
+                    {recentSearch}
+                  </span>
+                  <button
+                    onClick={() => removeRecentSearch(index)}
+                    className="ml-2 text-red-500"
+                  >
+                    X
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {filteredProducts.length > 0 && (
+          <ul className="z-50 flex flex-col items-center justify-center space-y-2 bg-white">
+            {filteredProducts.slice(0, 4).map((item, index) => (
+              <SearchParams
+                item={item}
+                key={index}
+                closeModal={closeModal}
+                clearFilterProducts={clearFilterProducts}
+              />
+            ))}
+          </ul>
+        )}
+        {filteredProducts.length < 1 && search.length > 2 && (
+          <p className="text-red-500">Nie znaleziono</p>
+        )}
       </div>
     </div>
   );
