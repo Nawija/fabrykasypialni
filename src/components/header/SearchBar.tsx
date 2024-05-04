@@ -140,7 +140,7 @@ export default function SearchBar() {
       </form>
 
       <div
-        className={`${isModalOpen === true ? "absolute" : "hidden"}  left-1/2 top-20 w-full -translate-x-1/2 space-y-10 bg-white px-10 py-6`}
+        className={`${isModalOpen === true ? "absolute" : "hidden"}  left-1/2 top-full border w-full -translate-x-1/2 space-y-10 bg-gray-100 shadow-2xl px-10 py-6 z-20`}
       >
         {recentSearches.length > 0 && (
           <div className="mt-4">
@@ -168,7 +168,7 @@ export default function SearchBar() {
           </div>
         )}
         {filteredProducts.length > 0 && (
-          <ul className="z-50 flex flex-col items-center justify-center space-y-2 bg-white">
+          <ul className="z-50 flex flex-col items-center justify-center space-y-2">
             {filteredProducts.slice(0, 4).map((item, index) => (
               <SearchParams
                 item={item}

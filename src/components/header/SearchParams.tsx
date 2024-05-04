@@ -19,7 +19,7 @@ export default function SearchParams({
 }) {
   const { img, title, price } = item;
   return (
-    <li className="w-full rounded-lg border border-main p-4 transition-colors duration-300 hover:border-zinc-300">
+    <li className="w-full rounded-lg border bg-white border-main p-4 transition-colors duration-300 hover:border-zinc-300">
       <Link
         onClick={() => {
           clearFilterProducts();
