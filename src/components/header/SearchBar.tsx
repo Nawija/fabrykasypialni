@@ -79,7 +79,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="relative z-50 mx-12 flex-1" ref={inputRef}>
+    <div className={`z-50 mx-12 flex-1`} ref={inputRef}>
       <form className="relative w-full">
         <input
           type="text"
@@ -97,16 +97,24 @@ export default function SearchBar() {
         </button>
       </form>
 
-      <ul className="fixed z-50 flex flex-col items-center justify-center space-y-2 bg-white">
-        {filteredProducts.slice(0, 4).map((item, index) => (
-          <SearchParams
-            item={item}
-            key={index}
-            closeModal={closeModal}
-            clearFilterProducts={clearFilterProducts}
-          />
-        ))}
-      </ul>
+      <div
+        className={`absolute top-20 bg-white  ${search.length >= 2 ? "p-10" : ""}`}
+      >
+        <ul className="z-50 flex flex-col items-center justify-center space-y-2 bg-white">
+          {filteredProducts.slice(0, 4).map((item, index) => (
+            <SearchParams
+              item={item}
+              key={index}
+              closeModal={closeModal}
+              clearFilterProducts={clearFilterProducts}
+            />
+          ))}
+        </ul>
+        <div
+          onClick={closeModal}
+          className={`fixed left-0 top-0 -z-20 h-full w-full transition-colors  ${isModalOpen ? "bg-black/30 backdrop-blur-sm" : "scale-0 bg-none"}`}
+        />
+      </div>
     </div>
   );
 }

@@ -1,27 +1,31 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { PortfolioItem } from "../types";
+
+type Props = {
+  img: string;
+  title: string;
+  price: number;
+};
 
 export default function SearchParams({
   item,
   clearFilterProducts,
   closeModal,
 }: {
-  item: PortfolioItem;
+  item: Props;
   clearFilterProducts: () => void;
   closeModal: () => void;
 }) {
-  const { id, img, title, price, prevPrice } = item;
+  const { img, title, price } = item;
   return (
-    <li className="p-4 border-main w-full rounded-lg border transition-colors duration-300 hover:border-zinc-300">
+    <li className="w-full rounded-lg border border-main p-4 transition-colors duration-300 hover:border-zinc-300">
       <Link
         onClick={() => {
           clearFilterProducts();
           closeModal();
         }}
-        href={`/${id}`}
+        href={`/${title}`}
         className="bg-body flex items-start justify-between space-x-2 p-2"
       >
         <img
@@ -32,17 +36,17 @@ export default function SearchParams({
           width={110}
         />
         <div className="flex flex-col items-end justify-end">
-          <p className="text-black">{title}</p>
+          <p className="text-black max-w-80">{title}</p>
           <div className="flex flex-col items-end justify-end text-sm">
             <p>{price}zł</p>
-            {prevPrice && (
+            {/* {prevPrice && (
               <div className="flex-c mt-2 text-sm">
                 <p className="mr-2 text-xs text-yellow-500">Promocja</p>
                 <small className=" text-red-700 line-through">
                   {prevPrice}zł
                 </small>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </Link>
